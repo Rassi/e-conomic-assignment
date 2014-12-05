@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webtest2", "webtest2\webtes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webtest2.Tests", "webtest2.Tests\webtest2.Tests.csproj", "{F6A6083A-E876-43B3-ADB6-9D6A6C4C3A27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeRegistrar.Core", "TimeRegistrar.Core\TimeRegistrar.Core.csproj", "{93D7C773-D7B1-4D5F-B266-CCC84AE1E5EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F6A6083A-E876-43B3-ADB6-9D6A6C4C3A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6A6083A-E876-43B3-ADB6-9D6A6C4C3A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6A6083A-E876-43B3-ADB6-9D6A6C4C3A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93D7C773-D7B1-4D5F-B266-CCC84AE1E5EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93D7C773-D7B1-4D5F-B266-CCC84AE1E5EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93D7C773-D7B1-4D5F-B266-CCC84AE1E5EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93D7C773-D7B1-4D5F-B266-CCC84AE1E5EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

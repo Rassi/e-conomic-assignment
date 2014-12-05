@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using webtest2.Models;
+using TimeRegistrar.Core.Models;
 
 namespace webtest2.Tests
 {
