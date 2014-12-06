@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TimeRegistrar.Core.Data
 {
@@ -30,6 +31,14 @@ namespace TimeRegistrar.Core.Data
             using (var connection = _dbContext.Connection())
             {
                 return connection.Table<T>().SingleOrDefault(entity => entity.Id == id);
+            }
+        }
+
+        public IEnumerable<T> FindAll()
+        {
+            using (var connection = _dbContext.Connection())
+            {
+                return connection.Table<T>().ToList();
             }
         }
     }
