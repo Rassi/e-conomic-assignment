@@ -7,41 +7,34 @@
     <title>Edit time registration</title>
 </head>
 <body>
+    @Html.AntiForgeryToken()
+
+    <h4>TimeRegistration</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">Project Name</div>
+            <div class="col-md-2">Time</div>
+            <div class="col-md-2">Date</div>
+        </div>
+        @foreach (var reg in @Model)
+        {
+            @Html.Partial("TimeRegistration", reg)
+        }
+    </div>
+    @*@Html.Partial("TimeRegistration", new TimeRegistration())*@
+
     @using (Html.BeginForm())
     {
-        @Html.AntiForgeryToken()
-
-        <div class="form-inline">
-            <h4>TimeRegistration</h4>
-            <hr />
-            <div class="form-group col-md-12">
-                <div class="col-md-4">Project Name</div>
-                <div class="col-md-4">Time</div>
-                <div class="col-md-4">Date</div>
-            </div>
-            @foreach (var reg in @Model)
-            {
-                @Html.Partial("TimeRegistration", reg)
-            }
-            @*@Html.Partial("TimeRegistration", new TimeRegistration())*@
-            <div class="form-group">
-                <div class="col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-
         <div class="form-inline">
             <div class="form-group">
                 <div class="input-group">
                     <label>Create new Project</label>
                     <input type="text" class="form-control" name="ProjectName" />
+                    <form action="" method="post">
+                        <input type="submit" class="btn btn-default" value="Create" name="CreateProject" />
+                    </form>
                 </div>
-            </div>
-            <div class="form-group">
-                <form action="" method="post">
-                    <input type="submit" class="btn btn-default" value="Create" name="CreateProject" />
-                </form>
             </div>
         </div>
     }
