@@ -1,10 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Ninject;
-using Ninject.Extensions.Conventions;
-using TimeRegistrar.Core.Common;
-using TimeRegistrar.Core.Data;
 
 namespace webtest2
 {
@@ -12,20 +8,8 @@ namespace webtest2
     {
         protected void Application_Start()
         {
-            //var kernel = new StandardKernel();
-            //kernel.Bind(x => x
-            //    .FromThisAssembly() // Scans currently assembly
-            //    .SelectAllClasses() // Retrieve all non-abstract classes
-            //    .BindDefaultInterface());
-
-            ////kernel.Load(new IocSetup());
-            //kernel.Bind<IDbContext>().To<DbContext>();
-
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
-            //var dbSetup = new DbSetup(kernel.Get<IDbContext>());
-            //dbSetup.SetupDatabase();
         }
     }
 }

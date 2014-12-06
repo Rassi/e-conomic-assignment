@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using TimeRegistrar.Core.Data;
 using TimeRegistrar.Core.Models;
+using webtest2.ViewModels;
 
 namespace webtest2.Controllers
 {
@@ -58,12 +57,32 @@ namespace webtest2.Controllers
         // GET: TimeRegistration/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(_timeRegistrationRepository.FindAll());
+            var projects = _projectRepository.FindAll();
+            var timeRegistrations = _timeRegistrationRepository.FindAll().ToList();
+
+            var timeRegistrationViewModels = new List<TimeRegistrationViewModel>();
+            foreach (var project in projects)
+            {
+                var timeRegViewModel = new TimeRegistrationViewModel()
+                {
+                    ProjectName = project.Name
+                };
+                var timeReg = timeRegistrations.SingleOrDefault(reg => reg.ProjectId == project.Id);
+
+                if (timeReg != null)
+                {
+                    timeRegViewModel.Time = timeReg.Time;
+                    timeRegViewModel.Date = timeReg.Date;
+                }
+
+                timeRegistrationViewModels.Add(timeRegViewModel);
+            }
+
+            return View(timeRegistrationViewModels);
         }
 
         // POST: TimeRegistration/Edit/5
         [HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
         public ActionResult Edit(int id, IList<TimeRegistration> timeRegistrations, string createProject, string projectName)
         {
             try

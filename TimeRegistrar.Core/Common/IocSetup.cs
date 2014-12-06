@@ -1,5 +1,4 @@
-﻿using Ninject;
-using Ninject.Modules;
+﻿using Ninject.Modules;
 using Ninject.Extensions.Conventions;
 
 namespace TimeRegistrar.Core.Common
@@ -9,8 +8,8 @@ namespace TimeRegistrar.Core.Common
         public override void Load()
         {
             this.Bind(x => x
-                .FromThisAssembly() // Scans currently assembly
-                .SelectAllClasses() // Retrieve all non-abstract classes
+                .FromThisAssembly()
+                .SelectAllClasses()
                 .BindDefaultInterface());
         }
     }

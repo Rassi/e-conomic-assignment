@@ -30,12 +30,12 @@ namespace webtest2.Tests
             // Act
             var timeReg = new TimeRegistration(0)
             {
-                RegistrationDate = date
+                Date = date
             
             };
 
             // Assert
-            Assert.That(timeReg.RegistrationDate, Is.EqualTo(date));
+            Assert.That(timeReg.Date, Is.EqualTo(date));
         }
     }
 }
