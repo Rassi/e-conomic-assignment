@@ -10,17 +10,19 @@ namespace webtest2.Controllers
 {
     public class TimeRegistrationController : Controller
     {
-        private readonly TimeRegistrationRepository _repository;
+        private readonly ITimeRegistrationRepository _timeRegistrationRepository;
+        private readonly IProjectRepository _projectRepository;
 
-        public TimeRegistrationController(TimeRegistrationRepository repository)
+        public TimeRegistrationController(ITimeRegistrationRepository timeRegistrationRepository, IProjectRepository projectRepository)
         {
-            _repository = repository;
+            _timeRegistrationRepository = timeRegistrationRepository;
+            _projectRepository = projectRepository;
         }
 
         // GET: TimeRegistration
         public ActionResult Index()
         {
-            var timeRegs = _repository.FindAll();
+            var timeRegs = _timeRegistrationRepository.FindAll();
 
             return View(timeRegs.SingleOrDefault());
         }
@@ -56,22 +58,21 @@ namespace webtest2.Controllers
         // GET: TimeRegistration/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(_repository.FindAll());
+            return View(_timeRegistrationRepository.FindAll());
         }
 
         // POST: TimeRegistration/Edit/5
         [HttpPost]
         //public ActionResult Edit(int id, FormCollection collection)
-        public ActionResult Edit(int id, IList<TimeRegistration> timeRegistrations, string createProject)
+        public ActionResult Edit(int id, IList<TimeRegistration> timeRegistrations, string createProject, string projectName)
         {
             try
             {
                 if (createProject != null)
                 {
-                    //_repository.Insert();
+                    var project = new Project(projectName);
+                    _projectRepository.Insert(project);
                 }
-                // TODO: Add update logic here
-
 
                 return RedirectToAction("Edit");
             }

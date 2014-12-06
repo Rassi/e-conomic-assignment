@@ -7,6 +7,7 @@ namespace TimeRegistrar.Core.Data
     {
         void Insert(T entity);
         T FindById(int id);
+        IEnumerable<T> FindAll();
     }
 
     public class Repository<T> : IRepository<T> where T : Entity, new()

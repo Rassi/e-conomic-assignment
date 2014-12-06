@@ -6,7 +6,7 @@ using webtest2.Tests.TestHelpers;
 namespace webtest2.Tests
 {
     [TestFixture]
-    public class ProjectRepositoryTests
+    public class ProjectRepositoryTests : TestDbSetup
     {
         [Test]
         public void ShouldSave()

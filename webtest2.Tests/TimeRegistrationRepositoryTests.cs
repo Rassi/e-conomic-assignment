@@ -6,7 +6,7 @@ using webtest2.Tests.TestHelpers;
 namespace webtest2.Tests
 {
     [TestFixture]
-    public class TimeRegistrationRepositoryTests
+    public class TimeRegistrationRepositoryTests : TestDbSetup
     {
         private TestDbContext _testDbContext;
         private ProjectRepository _projectRepository;
