@@ -18,7 +18,7 @@ namespace TimeRegistrar.Core.Data
             _dbContext = dbContext;
         }
 
-        public void Insert(T entity)
+        public virtual void Insert(T entity)
         {
             using (var connection = _dbContext.Connection())
             {

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using SQLite;
 using TimeRegistrar.Core.Data;
 
 namespace TimeRegistrar.Core.Models
 {
     public class TimeRegistration : Entity
     {
+        [Indexed]
         public int ProjectId { get; set; }
         public TimeSpan Time { get; set; }
         

@@ -8,20 +8,32 @@ namespace webtest2.Tests
     [TestFixture]
     public class TimeRegistrationRepositoryTests
     {
+        private TestDbContext _testDbContext;
+        private ProjectRepository _projectRepository;
+        private TimeRegistrationRepository _timeRegistrationRepository;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _testDbContext = new TestDbContext();
+            _projectRepository = new ProjectRepository(_testDbContext);
+            _timeRegistrationRepository = new TimeRegistrationRepository(_testDbContext, _projectRepository);
+        }
+
         [Test]
         public void ShouldInsert()
         {
             // Arrange
-            var repo = new TimeRegistrationRepository(new TestDbContext());
-            var timeReg = new TimeRegistration("TestProject");
+            var project = new Project("TestProject");
+            _projectRepository.Insert(project);
+            var timeReg = new TimeRegistration(project.Id);
 
             // Act
-            repo.Insert(timeReg);
+            _timeRegistrationRepository.Insert(timeReg);
             
             // Assert
-            var actual = repo.FindById(timeReg.Id);
+            var actual = _timeRegistrationRepository.FindById(timeReg.Id);
             Assert.That(actual.Id, Is.EqualTo(timeReg.Id));
-            Assert.That(actual.ProjectName, Is.EqualTo(timeReg.ProjectName));
         }
     }
 }

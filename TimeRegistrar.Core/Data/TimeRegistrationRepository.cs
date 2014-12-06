@@ -1,4 +1,5 @@
-﻿using TimeRegistrar.Core.Models;
+﻿using System;
+using TimeRegistrar.Core.Models;
 
 namespace TimeRegistrar.Core.Data
 {
@@ -8,8 +9,22 @@ namespace TimeRegistrar.Core.Data
 
     public class TimeRegistrationRepository : Repository<TimeRegistration>, ITimeRegistrationRepository
     {
-        public TimeRegistrationRepository(IDbContext dbContext) : base(dbContext)
+        private readonly IProjectRepository _projectRepository;
+
+        public TimeRegistrationRepository(IDbContext dbContext, IProjectRepository projectRepository) : base(dbContext)
         {
+            _projectRepository = projectRepository;
+        }
+
+        public override void Insert(TimeRegistration entity)
+        {
+            var project = _projectRepository.FindById(entity.ProjectId);
+            if (project == null)
+            {
+                throw new Exception(string.Format("Project with id '{0}' does not exist.", entity.ProjectId));
+            }
+            
+            base.Insert(entity);
         }
     }
 }

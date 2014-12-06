@@ -8,22 +8,11 @@ namespace webtest2.Tests
     public class TimeRegistrationTests
     {
         [Test]
-        public void ShouldAssociateProject()
-        {
-            // Arrange
-            // Act
-            var timeReg = new TimeRegistration("NewProject");
-
-            // Assert
-            Assert.That(timeReg.ProjectName, Is.EqualTo("NewProject"));
-        }
-        
-        [Test]
         public void ShouldContainTime()
         {
             // Arrange
             // Act
-            var timeReg = new TimeRegistration("")
+            var timeReg = new TimeRegistration(0)
             {
                 Time = TimeSpan.FromHours(8.5)
             };
@@ -39,7 +28,7 @@ namespace webtest2.Tests
             var date = DateTimeOffset.Parse("2012-01-01");
 
             // Act
-            var timeReg = new TimeRegistration("")
+            var timeReg = new TimeRegistration(0)
             {
                 RegistrationDate = date
             

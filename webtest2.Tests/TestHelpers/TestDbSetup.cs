@@ -23,6 +23,7 @@ namespace webtest2.Tests.TestHelpers
             using (var connection = _testDbContext.Connection())
             {
                 connection.DropTable<TimeRegistration>();
+                connection.DropTable<Project>();
             }
         }
     }

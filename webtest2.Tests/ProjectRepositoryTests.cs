@@ -19,7 +19,8 @@ namespace webtest2.Tests
             repo.Insert(project);
 
             // Assert
-
+            var actual = repo.FindById(project.Id);
+            Assert.That(actual.Name, Is.EqualTo(project.Name));
         }
     }
 }

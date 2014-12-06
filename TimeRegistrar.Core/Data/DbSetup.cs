@@ -13,6 +13,7 @@ namespace TimeRegistrar.Core.Data
 
         public void SetupDatabase()
         {
+            _dbContext.Connection().CreateTable<Project>();
             _dbContext.Connection().CreateTable<TimeRegistration>();
         }
     }
