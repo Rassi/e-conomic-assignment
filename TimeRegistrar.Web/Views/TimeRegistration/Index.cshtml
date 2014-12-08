@@ -1,0 +1,36 @@
+﻿@model IList<webtest2.ViewModels.TimeRegistrationViewModel>
+
+@{
+    ViewBag.Title = "Register time";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.AntiForgeryToken()
+
+<h2>TimeRegistration</h2>
+
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 h4">Project Name</div>
+        <div class="col-md-2 h4">Time</div>
+        <div class="col-md-2 h4">Date</div>
+    </div>
+    @foreach (var reg in @Model)
+    {
+        @Html.Partial("TimeRegistration", reg)
+    }
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="form-inline">
+        <div class="form-group">
+            <div class="input-group">
+                <label>Create new Project</label>
+                <input type="text" class="form-control" name="ProjectName" />
+                <input type="submit" class="btn btn-primary" value="Create" name="CreateProject" />
+            </div>
+        </div>
+    </div>
+}

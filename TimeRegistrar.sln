@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeRegistrar.Web", "webtest2\TimeRegistrar.Web.csproj", "{20BE39B4-B5E0-4575-AC37-8B732D6508B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeRegistrar.Web", "TimeRegistrar.Web\TimeRegistrar.Web.csproj", "{20BE39B4-B5E0-4575-AC37-8B732D6508B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeRegistrar.Tests", "webtest2.Tests\TimeRegistrar.Tests.csproj", "{F6A6083A-E876-43B3-ADB6-9D6A6C4C3A27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeRegistrar.Tests", "TimeRegistrar.Tests\TimeRegistrar.Tests.csproj", "{F6A6083A-E876-43B3-ADB6-9D6A6C4C3A27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeRegistrar.Core", "TimeRegistrar.Core\TimeRegistrar.Core.csproj", "{93D7C773-D7B1-4D5F-B266-CCC84AE1E5EC}"
 EndProject
