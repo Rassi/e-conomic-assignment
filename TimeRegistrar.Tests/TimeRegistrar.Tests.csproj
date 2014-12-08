@@ -68,7 +68,7 @@
       <Project>{93D7C773-D7B1-4D5F-B266-CCC84AE1E5EC}</Project>
       <Name>TimeRegistrar.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\webtest2\TimeRegistrar.Web.csproj">
+    <ProjectReference Include="..\TimeRegistrar.Web\TimeRegistrar.Web.csproj">
       <Project>{20BE39B4-B5E0-4575-AC37-8B732D6508B6}</Project>
       <Name>TimeRegistrar.Web</Name>
     </ProjectReference>
