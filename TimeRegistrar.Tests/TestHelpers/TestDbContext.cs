@@ -1,7 +1,7 @@
 using SQLite;
 using TimeRegistrar.Core.Data;
 
-namespace webtest2.Tests.TestHelpers
+namespace TimeRegistrar.Tests.TestHelpers
 {
     public class TestDbContext : IDbContext
     {

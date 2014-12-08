@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 using TimeRegistrar.Core.Data;
 using TimeRegistrar.Core.Models;
-using webtest2.Tests.TestHelpers;
+using TimeRegistrar.Tests.TestHelpers;
 
-namespace webtest2.Tests
+namespace TimeRegistrar.Tests
 {
     [TestFixture]
     public class ProjectRepositoryTests : TestDbSetup

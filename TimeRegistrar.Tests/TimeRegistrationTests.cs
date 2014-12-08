@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using TimeRegistrar.Core.Models;
 
-namespace webtest2.Tests
+namespace TimeRegistrar.Tests
 {
     [TestFixture]
     public class TimeRegistrationTests

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using TimeRegistrar.Core.Models;
 
-namespace webtest2.ViewModels
+namespace TimeRegistrar.Web.ViewModels
 {
     public class TimeRegistrationViewModel
     {

@@ -3,9 +3,9 @@ using System.Linq;
 using System.Web.Mvc;
 using TimeRegistrar.Core.Data;
 using TimeRegistrar.Core.Models;
-using webtest2.ViewModels;
+using TimeRegistrar.Web.ViewModels;
 
-namespace webtest2.Controllers
+namespace TimeRegistrar.Web.Controllers
 {
     public class TimeRegistrationController : Controller
     {

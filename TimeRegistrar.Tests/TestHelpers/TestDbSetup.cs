@@ -2,7 +2,7 @@
 using TimeRegistrar.Core.Data;
 using TimeRegistrar.Core.Models;
 
-namespace webtest2.Tests.TestHelpers
+namespace TimeRegistrar.Tests.TestHelpers
 {
     [SetUpFixture]
     public class TestDbSetup

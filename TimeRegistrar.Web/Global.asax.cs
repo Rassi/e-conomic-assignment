@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace webtest2
+namespace TimeRegistrar.Web
 {
     public class MvcApplication : HttpApplication
     {
