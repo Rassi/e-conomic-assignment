@@ -10,11 +10,11 @@ namespace TimeRegistrar.Core.Models
         public int ProjectId { get; set; }
         public TimeSpan Time { get; set; }
         
-        public DateTimeOffset Date { get; set; }
+        public DateTime Date { get; set; }
 
         public TimeRegistration()
         {
-            Date = DateTimeOffset.Now;
+            Date = DateTime.Now;
         }
 
         public TimeRegistration(int projectId)

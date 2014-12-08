@@ -55,7 +55,7 @@ namespace webtest2.Controllers
         }
 
         // GET: TimeRegistration/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
             var projects = _projectRepository.FindAll();
             var timeRegistrations = _timeRegistrationRepository.FindAll().ToList();
@@ -65,12 +65,15 @@ namespace webtest2.Controllers
             {
                 var timeRegViewModel = new TimeRegistrationViewModel()
                 {
-                    ProjectName = project.Name
+                    ProjectName = project.Name,
+                    ProjectId = project.Id
                 };
+
                 var timeReg = timeRegistrations.SingleOrDefault(reg => reg.ProjectId == project.Id);
 
                 if (timeReg != null)
                 {
+                    timeRegViewModel.Id = timeReg.Id;
                     timeRegViewModel.Time = timeReg.Time;
                     timeRegViewModel.Date = timeReg.Date;
                 }
@@ -83,14 +86,17 @@ namespace webtest2.Controllers
 
         // POST: TimeRegistration/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, IList<TimeRegistration> timeRegistrations, string createProject, string projectName)
+        public ActionResult Edit(string createProject, string projectName, TimeRegistrationViewModel timeRegistrationViewModel)
         {
             try
             {
                 if (createProject != null)
                 {
-                    var project = new Project(projectName);
-                    _projectRepository.Insert(project);
+                    CreateProject(projectName);
+                }
+                else
+                {
+                    SaveTimeRegistration(timeRegistrationViewModel);
                 }
 
                 return RedirectToAction("Edit");
@@ -99,6 +105,18 @@ namespace webtest2.Controllers
             {
                 return View();
             }
+        }
+
+        private void SaveTimeRegistration(TimeRegistrationViewModel timeRegistrationViewModel)
+        {
+            var timeRegistration = timeRegistrationViewModel.ToTimeRegistration();
+            _timeRegistrationRepository.Save(timeRegistration);
+        }
+
+        private void CreateProject(string projectName)
+        {
+            var project = new Project(projectName);
+            _projectRepository.Save(project);
         }
 
         // GET: TimeRegistration/Delete/5

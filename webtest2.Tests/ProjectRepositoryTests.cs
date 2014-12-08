@@ -16,7 +16,7 @@ namespace webtest2.Tests
             var project = new Project("TestProject");
 
             // Act
-            repo.Insert(project);
+            repo.Save(project);
 
             // Assert
             var actual = repo.FindById(project.Id);

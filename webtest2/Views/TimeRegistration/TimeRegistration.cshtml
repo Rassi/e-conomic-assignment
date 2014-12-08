@@ -7,8 +7,8 @@
         <div class="form-group col-md-2">
             <div class="input-group">
                 @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "sr-only" })
+                @Html.HiddenFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.DisplayFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -27,6 +27,8 @@
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ProjectId)
         <input type="submit" value="Save" class="btn btn-default" />
     </div>
 }

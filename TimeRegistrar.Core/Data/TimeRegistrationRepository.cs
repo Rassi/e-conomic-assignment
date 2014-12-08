@@ -16,7 +16,7 @@ namespace TimeRegistrar.Core.Data
             _projectRepository = projectRepository;
         }
 
-        public override void Insert(TimeRegistration entity)
+        public override void Save(TimeRegistration entity)
         {
             var project = _projectRepository.FindById(entity.ProjectId);
             if (project == null)
@@ -24,7 +24,7 @@ namespace TimeRegistrar.Core.Data
                 throw new Exception(string.Format("Project with id '{0}' does not exist.", entity.ProjectId));
             }
             
-            base.Insert(entity);
+            base.Save(entity);
         }
     }
 }

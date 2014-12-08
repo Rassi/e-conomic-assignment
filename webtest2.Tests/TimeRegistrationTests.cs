@@ -25,7 +25,7 @@ namespace webtest2.Tests
         public void ShouldContainRegistrationTime()
         {
             // Arrange
-            var date = DateTimeOffset.Parse("2012-01-01");
+            var date = DateTime.Parse("2012-01-01");
 
             // Act
             var timeReg = new TimeRegistration(0)
