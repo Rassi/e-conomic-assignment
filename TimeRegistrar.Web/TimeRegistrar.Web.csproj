@@ -139,7 +139,6 @@
     <Content Include="Views\TimeRegistration\Index.cshtml" />
     <Content Include="Views\TimeRegistration\TimeRegistration.cshtml" />
     <Content Include="Views\TimeRegistration\Invoice.cshtml" />
-    <Content Include="Views\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
