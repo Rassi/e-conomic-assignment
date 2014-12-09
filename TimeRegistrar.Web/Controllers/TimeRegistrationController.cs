@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using TimeRegistrar.Core.Data;
@@ -20,41 +21,24 @@ namespace TimeRegistrar.Web.Controllers
 
         public ActionResult Index()
         {
-            var projects = _projectRepository.FindAll();
-            var timeRegistrations = _timeRegistrationRepository.FindAll().ToList();
-
-            var timeRegistrationViewModels = new List<TimeRegistrationViewModel>();
-            foreach (var project in projects)
-            {
-                var timeRegViewModel = new TimeRegistrationViewModel()
-                {
-                    ProjectName = project.Name,
-                    ProjectId = project.Id
-                };
-
-                var timeReg = timeRegistrations.SingleOrDefault(reg => reg.ProjectId == project.Id);
-
-                if (timeReg != null)
-                {
-                    timeRegViewModel.Id = timeReg.Id;
-                    timeRegViewModel.Time = timeReg.Time;
-                    timeRegViewModel.Date = timeReg.Date;
-                }
-
-                timeRegistrationViewModels.Add(timeRegViewModel);
-            }
+            var timeRegistrationViewModels = FindTimeRegistrationsForDate(DateTime.Now);
 
             return View(timeRegistrationViewModels);
         }
 
         [HttpPost]
-        public ActionResult Index(string createProject, string projectName, TimeRegistrationViewModel timeRegistrationViewModel)
+        public ActionResult Index(string createProject, string projectName, string searchDate, TimeRegistrationViewModel timeRegistrationViewModel)
         {
             try
             {
-                if (createProject != null)
+                if (!string.IsNullOrEmpty(createProject))
                 {
                     CreateProject(projectName);
+                }
+                else if (!string.IsNullOrEmpty(searchDate))
+                {
+                    var timeRegistrationViewModels = FindTimeRegistrationsForDate(DateTime.Parse(searchDate));
+                    return View(timeRegistrationViewModels);
                 }
                 else
                 {
@@ -69,7 +53,40 @@ namespace TimeRegistrar.Web.Controllers
             }
         }
 
-        public ActionResult Invoice()
+        public ActionResult Invoice(string month, string year)
+        {
+            if (string.IsNullOrEmpty(month) || string.IsNullOrEmpty(year))
+            {
+                return View();
+            }
+            
+            var projects = _projectRepository.FindAll();
+            var monthToSearch = new DateTime(int.Parse(year), int.Parse(month), 1);
+            var timeRegistrations = _timeRegistrationRepository.FindForMonth(monthToSearch).ToList();
+
+            var invoiceViewModels = new List<InvoiceViewModel>();
+            foreach (var project in projects)
+            {
+                var timeRegs = timeRegistrations.Where(reg => reg.ProjectId == project.Id).ToList();
+
+                if (!timeRegs.Any())
+                {
+                    continue;
+                }
+
+                var invoiceViewModel = new InvoiceViewModel()
+                {
+                    ProjectName = project.Name,
+                    Time = new TimeSpan(timeRegs.Sum(r => r.Time.Ticks)),
+                };
+
+                invoiceViewModels.Add(invoiceViewModel);
+            }
+
+            return View(invoiceViewModels);
+        }
+
+        private List<TimeRegistrationViewModel> FindTimeRegistrationsForDate(DateTime date)
         {
             var projects = _projectRepository.FindAll();
             var timeRegistrations = _timeRegistrationRepository.FindAll().ToList();
@@ -80,10 +97,11 @@ namespace TimeRegistrar.Web.Controllers
                 var timeRegViewModel = new TimeRegistrationViewModel()
                 {
                     ProjectName = project.Name,
-                    ProjectId = project.Id
+                    ProjectId = project.Id,
+                    Date = date
                 };
 
-                var timeReg = timeRegistrations.SingleOrDefault(reg => reg.ProjectId == project.Id);
+                var timeReg = timeRegistrations.SingleOrDefault(reg => reg.ProjectId == project.Id && reg.Date == date);
 
                 if (timeReg != null)
                 {
@@ -94,8 +112,7 @@ namespace TimeRegistrar.Web.Controllers
 
                 timeRegistrationViewModels.Add(timeRegViewModel);
             }
-
-            return View(timeRegistrationViewModels);
+            return timeRegistrationViewModels;
         }
 
         private void SaveTimeRegistration(TimeRegistrationViewModel timeRegistrationViewModel)

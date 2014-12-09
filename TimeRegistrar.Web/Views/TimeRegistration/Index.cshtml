@@ -10,6 +10,20 @@
 <h2>TimeRegistration</h2>
 
 <hr />
+
+@using (Html.BeginForm())
+{
+    <div class="form-inline">
+        <div class="form-group">
+            <div class="input-group">
+                <label>Date</label>
+                <input type="text" class="form-control" name="SearchDate" />
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Find" name="FindDate" />
+    </div>
+}
+
 <div class="container">
     <div class="row">
         <div class="col-md-2 h4">Project Name</div>
@@ -21,6 +35,8 @@
         @Html.Partial("TimeRegistration", reg)
     }
 </div>
+
+<hr />
 
 @using (Html.BeginForm())
 {

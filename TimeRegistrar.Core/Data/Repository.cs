@@ -13,16 +13,16 @@ namespace TimeRegistrar.Core.Data
 
     public class Repository<T> : IRepository<T> where T : Entity, new()
     {
-        private readonly IDbContext _dbContext;
+        protected readonly IDbContext DbContext;
 
         public Repository(IDbContext dbContext)
         {
-            _dbContext = dbContext;
+            DbContext = dbContext;
         }
 
         protected void Insert(T entity)
         {
-            using (var connection = _dbContext.Connection())
+            using (var connection = DbContext.Connection())
             {
                 connection.Insert(entity);
             }
@@ -30,7 +30,7 @@ namespace TimeRegistrar.Core.Data
 
         public T FindById(int id)
         {
-            using (var connection = _dbContext.Connection())
+            using (var connection = DbContext.Connection())
             {
                 return connection.Table<T>().SingleOrDefault(entity => entity.Id == id);
             }
@@ -38,7 +38,7 @@ namespace TimeRegistrar.Core.Data
 
         public IEnumerable<T> FindAll()
         {
-            using (var connection = _dbContext.Connection())
+            using (var connection = DbContext.Connection())
             {
                 return connection.Table<T>().ToList();
             }
@@ -58,7 +58,7 @@ namespace TimeRegistrar.Core.Data
 
         protected void Update(T entity)
         {
-            using (var connection = _dbContext.Connection())
+            using (var connection = DbContext.Connection())
             {
                 connection.Update(entity);
             }

@@ -46,7 +46,6 @@ namespace TimeRegistrar.Tests
             var timeReg = new TimeRegistration(project.Id)
             {
                 Time = TimeSpan.FromHours(2)
-            
             };
             _timeRegistrationRepository.Save(timeReg);
             
@@ -61,5 +60,31 @@ namespace TimeRegistrar.Tests
             Assert.That(actual.Time, Is.EqualTo(TimeSpan.FromHours(4)));
         }
 
+        [Test]
+        public void ShouldFindForMonth()
+        {
+            // Arrange
+            var project = new Project("TestProject");
+            _projectRepository.Save(project);
+            var timeReg = AddTimeRegistration(project, DateTime.Parse("20-10-2014"));
+            AddTimeRegistration(project, DateTime.Parse("20-12-2014"));
+
+            // Act
+            var timeRegsForMonth = _timeRegistrationRepository.FindForMonth(DateTime.Parse("05-10-2014"));
+
+            // Assert
+            Assert.That(timeRegsForMonth.Count, Is.EqualTo(1));
+        }
+
+        private TimeRegistration AddTimeRegistration(Project project, DateTime date)
+        {
+            var timeReg = new TimeRegistration(project.Id)
+            {
+                Date = date,
+                Time = TimeSpan.FromHours(8)
+            };
+            _timeRegistrationRepository.Save(timeReg);
+            return timeReg;
+        }
     }
 }
