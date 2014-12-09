@@ -17,7 +17,14 @@
         <div class="form-group">
             <div class="input-group">
                 <label>Date</label>
-                <input type="text" class="form-control" name="SearchDate" />
+                <input type="text" class="form-control" name="SearchDate" placeholder="@if (Model == null)
+                                                                                       {
+                                                                                           @DateTime.Now.ToString("dd-MM-yyyy")
+                                                                                       }
+                                                                                       else
+                                                                                       {
+                                                                                           @Model.First().Date.ToString("dd-MM-yyyy")
+                                                                                       }"/>
             </div>
         </div>
         <input type="submit" class="btn btn-primary" value="Find" name="FindDate" />
@@ -28,7 +35,6 @@
     <div class="row">
         <div class="col-md-2 h4">Project Name</div>
         <div class="col-md-2 h4">Time</div>
-        <div class="col-md-2 h4">Date</div>
     </div>
     @foreach (var reg in @Model)
     {
