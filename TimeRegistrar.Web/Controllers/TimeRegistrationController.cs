@@ -40,7 +40,7 @@ namespace TimeRegistrar.Web.Controllers
                     var timeRegistrationViewModels = FindTimeRegistrationsForDate(DateTime.Parse(searchDate));
                     return View(timeRegistrationViewModels);
                 }
-                else
+                else if (timeRegistrationViewModel.Time > default(TimeSpan))
                 {
                     SaveTimeRegistration(timeRegistrationViewModel);
                 }
@@ -101,7 +101,7 @@ namespace TimeRegistrar.Web.Controllers
                     Date = date
                 };
 
-                var timeReg = timeRegistrations.SingleOrDefault(reg => reg.ProjectId == project.Id && reg.Date == date);
+                var timeReg = timeRegistrations.SingleOrDefault(reg => reg.ProjectId == project.Id && reg.Date.Date == date.Date);
 
                 if (timeReg != null)
                 {

@@ -35,7 +35,7 @@ namespace TimeRegistrar.Core.Data
             {
                 using (var connection = DbContext.Connection())
                 {
-                    var existingRecord = connection.Table<TimeRegistration>().SingleOrDefault(reg => reg.Id == entity.Id && reg.Date == entity.Date);
+                    var existingRecord = connection.Table<TimeRegistration>().SingleOrDefault(reg => reg.Id == entity.Id && reg.Date.Date == entity.Date.Date);
                     if (existingRecord == null)
                     {
                         Insert(entity);
